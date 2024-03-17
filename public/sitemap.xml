@@ -4,6 +4,19 @@
 
   <url>
     <loc>http://localhost:2681/</loc>
+    <lastmod>2024-03-16T23:44:38+07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:2681/brands/</loc>
+    <lastmod>2024-03-16T23:44:38+07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:2681/about/</loc>
+    <lastmod>2024-03-16T23:18:45+07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
