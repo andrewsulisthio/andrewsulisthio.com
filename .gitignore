@@ -16,7 +16,4 @@ hugo.linux
 # Temporary lock file while building
 /.hugo_build.lock
 
-# Huge node_modules directory
-node_modules
-
 # End of https://www.toptal.com/developers/gitignore/api/hugo
