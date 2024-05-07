@@ -25,6 +25,11 @@ name = "Brands"
 pageRef = "brands"
 weight = 3
 
+[[main]]
+name = "Blog"
+pageRef = "blog"
+weight = 4
+
 #[[main]]
 #  name = "Parent"
 #  weight = 20
