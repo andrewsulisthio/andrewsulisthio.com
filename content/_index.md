@@ -9,6 +9,11 @@ Passionately developing efficient and easy-to-maintain **web solutions** for bus
 
 ---
 
+{{< badge >}}
+⭐ New Blog Post!
+{{< /badge >}}
+{{< article link="/blog/2024-05-07-swimming-is-eternal/" >}}
+
 {{< typeit 
     tag=p
     speed=75
