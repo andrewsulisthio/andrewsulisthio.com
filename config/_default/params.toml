@@ -50,7 +50,7 @@ layoutBackgroundBlur = false # only used when layout equals background
 showDate = true
 showViews = false
 showLikes = false
-showDateOnlyInArticle = true
+showDateOnlyInArticle = false
 showDateUpdated = true
 showAuthor = true
 showHero = true
@@ -74,7 +74,7 @@ showTaxonomies = true
 showAuthorsBadges = true
 showWordCount = true
 # sharingLinks = [ "linkedin", "twitter", "reddit", "pinterest", "facebook", "email", "whatsapp", "telegram"]
-showZenMode = true
+showZenMode = false
 
 [list]
 showHero = true
