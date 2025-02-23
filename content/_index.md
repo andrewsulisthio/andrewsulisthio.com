@@ -32,6 +32,8 @@ Tinkering 🛠️
 Sleeping 🛌
 {{< /typeit >}}
 
+{{< article link="/blog/2025-02-23-setting-up-ubuntu-server-in-hyperv-on-windows/" >}}
+
 {{< article link="/blog/2024-05-08-on-electric-toothbrush/" >}}
 
 {{< article link="/blog/2024-05-07-swimming-is-eternal/" >}}
