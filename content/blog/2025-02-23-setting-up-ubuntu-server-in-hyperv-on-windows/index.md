@@ -1,7 +1,8 @@
 ---
 title:  Setting Up Ubuntu Server in Hyper-V on Windows
 description: "This guide outlines the steps I take to set up a new Ubuntu 24.04 server within a Hyper-V virtual machine on Windows. The primary focus is establishing secure SSH access, allowing convenient remote management from your preferred IDE. We'll cover VM creation, basic Ubuntu configuration, and secure SSH key-based authentication."
-date: 2025-02-23T02:42:26.838Z
+date: 2025-02-23
+lastmod: 2025-03-01
 draft: false
 tags:
     - Coding
@@ -41,14 +42,13 @@ This guide outlines the steps I take to set up a new Ubuntu 24.04 server within 
     *   Download and run PuTTYgen.
     *   Set the "Number of bits in a generated key" to **4096** for enhanced security.
     *   Click "Generate" and move your mouse around to create randomness.
-    *   Set a Key passphrase.
-    *   The generated Key fingerprint should be kept as record in case of emergency (e.g. Server compromised)
 2.  Copy the Public Key: Carefully copy the *entire* contents of the "Public key for pasting into OpenSSH authorized_keys file" field. **Important:** Make sure you copy *everything*, including the `ssh-rsa` at the beginning. Incorrectly copying this can lead to authentication failures.
-3.  Connect to the VM via SSH (initially using password authentication) using Visual Studio Code:
+3.  **Connect to the VM via SSH (initially using password authentication) using Visual Studio Code:**
     *   Use Visual Studio Code to connect to the new virtual machine.
     *   You will be prompted to authenticate with the user's password
-    *   Check if you have an authorized_keys file in ~/.ssh/
 4.  Paste the Public Key: Paste the public key you copied from PuTTYgen into the `authorized_keys` file. Save the file.
+5. **Saving the Public Key:**
+    *   Back in PuTTYgen, click "Save public key." Save the public key to a secure location on your local machine (e.g., `C:\Users\YourUser\.ssh\id_rsa.pub`). This serves as a backup if you ever need to restore the key.
 
 **Exporting the Private Key and Setting Permissions:**
 
@@ -71,16 +71,17 @@ This guide outlines the steps I take to set up a new Ubuntu 24.04 server within 
 
 **Disabling Password Authentication (Important Security Measure):**
 
-1.  Edit the SSHD Configuration File: Using Visual Studio Code (or your preferred IDE), connect to the VM via SSH and open the SSH configuration file: `/etc/ssh/sshd_config`
+1.  Install Save as Root Extension: In your IDE's Extensions Marketplace, search and install the "Save as Root" extension.
+2.  Edit the SSHD Configuration File: Using Visual Studio Code (or your preferred IDE), connect to the VM via SSH and open the SSH configuration file: `/etc/ssh/sshd_config`
 
-2.  Find and Modify the following line:
+3.  Find and Modify the following line:
 
     *   Change `PasswordAuthentication yes` to `PasswordAuthentication no`.
-3.  Save the changes to the `sshd_config` file.
-4.  Restart the SSH Service: Using VS Code's integrated terminal, run the following command:
+4.  Save the changes to the `sshd_config` file with the help of Save as Root extension.
+5.  Restart the SSH Service: Using VS Code's integrated terminal, run the following command:
 
     ```bash
-    sudo systemctl restart sshd
+    sudo systemctl restart ssh
     ```
 
 **Important Considerations:**
