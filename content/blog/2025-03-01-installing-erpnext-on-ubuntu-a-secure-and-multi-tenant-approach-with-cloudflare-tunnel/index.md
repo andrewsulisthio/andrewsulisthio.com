@@ -2,6 +2,7 @@
 title:  Installing ERPNext on Ubuntu, A Secure and Multi-Tenant Approach with Cloudflare Tunnel
 description: "This post builds upon my previous guide for setting up a secure Ubuntu server in Hyper-V. Now, we'll install ERPNext, a powerful open-source ERP system, on that server. We'll leverage Cloudflare Tunnel for secure, SSL-encrypted access, and I'll show you how to set up a second sandbox ERPNext instance for testing and development."
 date: 2025-03-01
+lastmod: 2025-03-12
 draft: false
 tags:
     - Coding
@@ -32,7 +33,7 @@ Before installing ERPNext, we need a secure way to access the server. Cloudflare
     *   **Subdomain:** Choose a subdomain for your ERPNext instance (e.g., `erp`).
     *   **Domain:** Select your domain from the dropdown.
     *   **Type:** Select `HTTP`.
-    *   **URL:** Enter `localhost:8000`. ERPNext runs on port 8000 by default (we'll confirm this later).
+    *   **URL:** Enter `localhost`.
     *   Click "Save tunnel."
 
 With the Cloudflare Tunnel configured, your server is now accessible via `https://erp.yourdomain.com` (replace `erp.yourdomain.com` with your actual subdomain and domain).
@@ -43,12 +44,15 @@ Now that our server is securely accessible, let's install ERPNext. I recommend u
 
 1.  **SSH Access:** Ensure you're logged into your Ubuntu server via SSH as your regular user (the one that can use sudo).
 2.  **Download and Run the Script:**
-    *   Clone the ERPNext Quick Install repository:
+    *   Clone the ERPNext Quick Install repository and run it using the following set of commands:
 
     ```bash
+    sudo apt update && sudo apt -y upgrade
+    cd ~
     git clone https://github.com/flexcomng/erpnext_quick_install
     cd erpnext_quick_install
-    sudo bash install.sh
+    chmod +x erpnext_install.sh
+    source erpnext_install.sh
     ```
 3.  **Follow the Prompts:** The script will guide you through the installation process. Here's a breakdown of the inputs you'll need to provide (adjust as needed):
 
@@ -84,7 +88,7 @@ It's highly recommended to have a separate ERPNext instance for testing, develop
     *   **Subdomain:** Choose a different subdomain (e.g., `erp2`).
     *   **Domain:** Select your domain.
     *   **Type:** `HTTP`
-    *   **URL:** `localhost:8000` (both instances can share the same port)
+    *   **URL:** `localhost` (both instances can share the same port)
     *   Save the changes.
 2.  **Create a New ERPNext Site:**
     *   SSH into your server and navigate to the `frappe-bench` directory of ERPNext.
@@ -110,8 +114,8 @@ It's highly recommended to have a separate ERPNext instance for testing, develop
 5.  **Restart Nginx:**
 
     ```bash
-    sudo bench setup nginx
-    sudo service nginx restart
+    bench setup nginx
+    service nginx restart
     ```
 
 You can now access your second ERPNext instance at `https://erp2.yourdomain.com`. You'll have a completely separate database and configuration, allowing you to experiment freely.
